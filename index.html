@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ open: false, showLine: window.innerWidth >= 924 }"
+    x-init="window.addEventListener('resize', () => showLine = window.innerWidth >= 924)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyeee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+</head>
+
+<style>
+    .animation-rotate {
+        animation: rotate 5s infinite ease-in-out;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        25% {
+            transform: rotate(10deg);
+        }
+
+        50% {
+            transform: rotate(0deg);
+        }
+
+        75% {
+            transform: rotate(-10deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn 0.8s ease-in-out both;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .gradient-text {
+        background: linear-gradient(to right, #38bdf8, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen text-gray-800">
+    <header class="w-full backdrop-blur-md bg-white/80 shadow-lg sticky top-0 z-50 transition-all duration-300">
+        <!-- HEADER (no change) -->
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="relative">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-sky-300 to-sky-400 rounded-full blur-md opacity-30 group-hover:opacity-50 transition-opacity">
+                    </div>
+                    <img src="assets/logo.png" alt="logo.png"
+                        class="w-16 h-16 object-cover rounded-full relative z-10 ring-2 ring-sky-300/50 group-hover:ring-sky-400 transition-all">
+                </div>
+                <div>
+                    <h1 class="text-gray-900 font-bold text-3xl tracking-tight">
+                        Zyeee
+                        <span
+                            class="bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent italic">Builder</span>
+                    </h1>
+                    <p class="text-xs text-gray-500 font-medium">Crafting Digital Excellence</p>
+                </div>
+            </a>
+            <button @click="open = !open"
+                class="relative py-2 flex items-center justify-center rounded-lg border-2 border-gray-300 hover:border-sky-400 transition-all duration-300 group overflow-hidden"
+                :class="open ? 'w-28 bg-sky-50 border-sky-400 shadow-lg shadow-sky-200' : 'w-12 h-12 bg-white shadow-md'">
+                <div class="absolute left-3 w-8 h-8 flex items-center justify-center transition-all duration-500"
+                    :class="open ? 'opacity-100' : 'opacity-0 pointer-events-none'">
+                    <img src="assets/icon/up-arrow.png" alt="arrow icon"
+                        class="w-7 h-7 transition-all duration-500 ease-out"
+                        :class="open ? 'scale-110 rotate-180 translate-x-0 drop-shadow-md' : 'scale-50 rotate-0 -translate-x-6'">
+                    <div class="absolute inset-0 bg-sky-400 rounded-full transition-all duration-500"
+                        :class="open ? 'scale-100 opacity-20 blur-md' : 'scale-0 opacity-0'"></div>
+                </div>
+                <div class="relative w-6 h-5 flex flex-col justify-center items-center z-10 transition-all duration-500 ease-out"
+                    :class="open ? 'translate-x-8 scale-110' : 'translate-x-0 scale-100'">
+                    <span class="w-6 h-0.5 bg-gray-700 rounded transition-all duration-400 absolute"
+                        :class="open ? 'rotate-45 bg-sky-500' : '-translate-y-2'"></span>
+                    <span class="w-6 h-0.5 bg-gray-700 rounded transition-all duration-300"
+                        :class="open ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></span>
+                    <span class="w-6 h-0.5 bg-gray-700 rounded transition-all duration-400 absolute"
+                        :class="open ? '-rotate-45 bg-sky-500' : 'translate-y-2'"></span>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-r from-sky-300 to-blue-300 rounded-lg transition-all duration-500 ease-out"
+                    :class="open ? 'scale-150 opacity-0' : 'scale-0 opacity-40'"></div>
+
+                <div class="absolute inset-0 border-2 border-sky-400 rounded-lg transition-all duration-700 ease-out"
+                    :class="open ? 'scale-110 opacity-0' : 'scale-100 opacity-0'"></div>
+            </button>
+        </div>
+
+
+        <div x-show="open" x-transition
+            class="bg-gradient-to-br from-white to-gray-50 shadow-2xl border-t-2 border-sky-200 relative overflow-hidden">
+
+            <template x-if="showLine">
+                <div class="absolute top-1/2 left-0 -translate-y-1/2 w-1/2 pointer-events-none">
+                    <div
+                        class="absolute top-1/2 -translate-y-1/2 w-full h-1 bg-gradient-to-r from-sky-500 via-sky-400 to-transparent rounded-full shadow-lg shadow-sky-500/50">
+                    </div>
+                    <div
+                        class="absolute top-1/2 -translate-y-1/2 translate-y-[-2px] w-full h-0.5 bg-gradient-to-r from-sky-300/80 via-sky-200/60 to-transparent rounded-full">
+                    </div>
+                    <div
+                        class="absolute top-1/2 left-0 -translate-y-1/2 w-2 h-2 bg-sky-500 rounded-full shadow-lg shadow-sky-500/50 animate-pulse">
+                    </div>
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1">
+                        <div class="relative w-6 h-6">
+                            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 
+                                border-t-[8px] border-t-transparent 
+                                border-l-[12px] border-l-sky-500 
+                                border-b-[8px] border-b-transparent
+                                drop-shadow-lg"></div>
+                            <div class="absolute right-[2px] top-1/2 -translate-y-1/2 w-0 h-0 
+                                border-t-[6px] border-t-transparent 
+                                border-l-[9px] border-l-sky-400 
+                                border-b-[6px] border-b-transparent"></div>
+                            <div
+                                class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-sky-500/50 rounded-full blur-md">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <nav class="max-w-7xl mx-auto px-6 py-8 relative z-10">
+                <ul class="flex items-center justify-end gap-12 pr-8 flex-wrap">
+                    <li><a href="#home" @click="open = false"
+                            class="text-gray-800 hover:text-sky-500 font-bold text-lg transition-all duration-300 relative group">Home<span
+                                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-500 to-blue-500 group-hover:w-full transition-all duration-300 rounded-full shadow-sm shadow-sky-500/50"></span></a>
+                    </li>
+                    <li><a href="#about" @click="open = false"
+                            class="text-gray-800 hover:text-sky-500 font-bold text-lg transition-all duration-300 relative group">About<span
+                                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-500 to-blue-500 group-hover:w-full transition-all duration-300 rounded-full shadow-sm shadow-sky-500/50"></span></a>
+                    </li>
+                    <li><a href="#project" @click="open = false"
+                            class="text-gray-800 hover:text-sky-500 font-bold text-lg transition-all duration-300 relative group">Project<span
+                                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-500 to-blue-500 group-hover:w-full transition-all duration-300 rounded-full shadow-sm shadow-sky-500/50"></span></a>
+                    </li>
+                    <li><a href="#service" @click="open = false"
+                            class="text-gray-800 hover:text-sky-500 font-bold text-lg transition-all duration-300 relative group">Service<span
+                                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-500 to-blue-500 group-hover:w-full transition-all duration-300 rounded-full shadow-sm shadow-sky-500/50"></span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section
+        class="w-full min-h-screen flex justify-center items-center gap-6 relative overflow-hidden bg-gradient-to-br from-sky-50 via-blue-50 to-white"
+        id="home" data-aos="fade-up">
+        <!-- Animated Background Elements -->
+        <div
+            class="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-sky-200/40 to-blue-200/40 rounded-full blur-3xl animate-pulse">
+        </div>
+        <div class="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-sky-200/30 rounded-full blur-3xl animate-pulse"
+            style="animation-delay: 1.5s;"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-sky-100/20 to-blue-100/20 rounded-full blur-3xl">
+        </div>
+
+        <div class="container ms-6 relative z-10">
+            <div class="grid grid-cols-12 gap-6 ps-6">
+                <div class="col-span-6 flex items-center px-6">
+                    <div class="flex-col justify-start items-start px-6 space-y-4">
+                        <!-- Badge/Tag -->
+                        <div class="inline-block">
+                            <span
+                                class="bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent italic underline decoration-2 underline-offset-4 text-lg font-semibold animate-pulse">
+                                What do you need
+                            </span>
+                        </div>
+
+                        <!-- Main Title -->
+                        <div class="space-y-1">
+                            <h1 class="text-gray-900 font-bold text-5xl tracking-tight leading-tight drop-shadow-sm">
+                                Zyeee
+                                <span
+                                    class="bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent italic">Builder</span>
+                            </h1>
+                            <p class="text-sm text-gray-600 font-medium tracking-wide">Crafting Digital Excellence
+                            </p>
+                        </div>
+
+                        <!-- Typing Animation -->
+                        <div class="mt-6 px-4 py-3">
+                            <p class="text-lg h-7">
+                                <span id="typingText" class="italic text-sky-400 font-medium"></span>
+                                <span class="animate-pulse text-sky-400">|</span>
+                            </p>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-gray-700 leading-relaxed text-base">
+                            Accepting services for creating, developing, and testing websites, games, videos, etc.
+                        </p>
+
+                        <!-- WhatsApp Contact -->
+                        <div class="flex items-center gap-3">
+                            <p class="text-base font-medium text-gray-700">
+                                You can contact us via
+                                <span class="text-green-500 font-bold">WhatsApp</span>:
+                            </p>
+                            <a href="https://wa.me/+62882003509995" target="_blank"
+                                class="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full shadow-lg h-12 flex items-center justify-center text-sm px-6 py-2 
+                                          hover:from-green-600 hover:to-green-700 hover:scale-110 hover:shadow-xl transition-all duration-300">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span class="ps-2 font-semibold">(+62) 882********95</span>
+                            </a>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="mt-8 grid grid-cols-2 gap-4">
+                            <button class="w-full px-6 py-3 bg-transparent text-gray-800 font-semibold border-2 border-sky-400 rounded-lg shadow-md 
+                                               hover:bg-gradient-to-r hover:from-sky-400 hover:to-blue-400 hover:text-white hover:shadow-xl hover:scale-105 hover:border-transparent 
+                                               transition-all duration-300 ease-in-out"
+                                onclick="window.location.href='#about'">
+                                Read Now
+                            </button>
+
+                            <button class="w-full px-6 py-3 bg-gradient-to-r from-sky-400 to-blue-400 text-white font-semibold rounded-lg shadow-md 
+                                               hover:shadow-xl hover:scale-105 hover:from-sky-500 hover:to-blue-500
+                                               transition-all duration-300 ease-in-out"
+                                onclick="window.location.href='#project'">
+                                Open
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <!-- GitHub -->
+                            <a href="https://github.com/Zyeee-breaker" class="group relative">
+                                <div
+                                    class="absolute inset-0 bg-gray-800 rounded-lg blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300">
+                                </div>
+                                <i class="fa-brands fa-github text-3xl text-gray-700 hover:text-gray-900 transition-all duration-300 relative z-10 
+                   group-hover:scale-125 group-hover:drop-shadow-lg"></i>
+                            </a>
+
+                            <!-- Instagram -->
+                            <a href="notFound.html" class="group relative">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 rounded-lg blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                </div>
+                                <i class="fa-brands fa-square-instagram text-3xl bg-gradient-to-br from-purple-600 via-pink-500 to-orange-500 bg-clip-text text-transparent 
+                   hover:from-purple-700 hover:via-pink-600 hover:to-orange-600 transition-all duration-300 relative z-10 
+                   group-hover:scale-125 group-hover:drop-shadow-lg group-hover:rotate-12"></i>
+                            </a>
+
+                            <!-- TikTok -->
+                            <a href="notFound.html" class="group relative">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-lg blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                </div>
+                                <i class="fa-brands fa-tiktok text-3xl bg-gradient-to-br from-cyan-400 to-pink-500 bg-clip-text text-transparent 
+                   hover:from-cyan-500 hover:to-pink-600 transition-all duration-300 relative z-10 
+                   group-hover:scale-125 group-hover:drop-shadow-lg group-hover:-rotate-12"></i>
+                            </a>
+
+                            <!-- X (Twitter) -->
+                            <a href="notFound.html" class="group relative">
+                                <div
+                                    class="absolute inset-0 bg-gray-900 rounded-lg blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300">
+                                </div>
+                                <i class="fa-brands fa-x-twitter text-3xl text-gray-800 hover:text-black transition-all duration-300 relative z-10 
+                   group-hover:scale-125 group-hover:drop-shadow-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo Section with Floating Icons -->
+                <div class="relative w-[600px] h-[600px] flex items-center justify-center">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0 flex items-center justify-center z-0">
+                        <img src="assets/bg/home.png"
+                            class="w-[500px] h-[500px] object-contain opacity-20 filter brightness-0 animate-pulse">
+                    </div>
+
+                    <!-- Main Logo with Glow Effect -->
+                    <div class="w-96 h-96 flex items-center justify-center p-6 z-10 relative">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-sky-400/20 to-blue-400/20 rounded-full blur-2xl animate-pulse">
+                        </div>
+                        <img src="assets/logo.png" alt="logo.png"
+                            class="w-80 h-80 object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-110 relative z-10">
+                    </div>
+
+                    <!-- Container for floating icons -->
+                    <div id="icon-container" class="absolute inset-0 z-20"></div>
+
+                    <!-- Decorative Circles -->
+                    <div class="absolute top-10 right-10 w-4 h-4 bg-sky-400 rounded-full opacity-60 animate-bounce">
+                    </div>
+                    <div class="absolute bottom-20 left-10 w-3 h-3 bg-blue-400 rounded-full opacity-60 animate-bounce"
+                        style="animation-delay: 0.5s;"></div>
+                    <div class="absolute top-1/3 right-20 w-2 h-2 bg-sky-300 rounded-full opacity-60 animate-bounce"
+                        style="animation-delay: 1s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <div class="relative top-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-16 transform -scale-x-100 -scale-y-100" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="fill-black"></path>
+            </svg>
+        </div>
+
+        <div class="relative top-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="fill-black"></path>
+            </svg>
+        </div>
+    </section>
+    <!-- MAIN -->
+    <main class="max-w-full mx-auto bg-gradient-to-b from-gray-50 via-white to-gray-100">
+        <!-- HERO (no change) -->
+        <section class="min-h-[20vh] flex flex-col justify-center items-center text-center p-6" data-aos="fade-up">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-3">Welcome to <span
+                    class="gradient-text italic">Zyeee Builder</span></h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">Crafting fast, secure, and user-friendly systems
+                with Laravel, Tailwind, and modern tech stack.</p>
+            <a href="#service"
+                class="bg-gradient-to-r from-sky-400 to-blue-400 text-white px-6 py-3 rounded-lg shadow hover:scale-105 transition">Contact
+                Me</a>
+        </section>
+
+        <!-- INTRO SECTION -->
+        <section class="max-w-6xl mx-auto px-6 py-16 space-y-16">
+            <!-- Profile -->
+            <div class="fade-in">
+                <h2 class="text-3xl font-bold mb-6 gradient-text" data-aos="fade-right">Profile</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="flex justify-center md:justify-start" data-aos="fade-right">
+                        <img src="assets/Profile.jpg" alt="Profile"
+                            class="w-48 h-48 object-cover rounded-full border-4 border-sky-400 shadow-md hover:scale-105 transition">
+                    </div>
+                    <div class="space-y-2" data-aos="fade-left">
+                        <p><span class="font-semibold">Name:</span> Zyeee</p>
+                        <p><span class="font-semibold">Role:</span> Freelance Developer</p>
+                        <p><span class="font-semibold">Location:</span> Yogyakarta, Indonesia</p>
+                        <p><span class="font-semibold">Age:</span> 17</p>
+                        <p><span class="font-semibold">Specialization:</span> Website Development</p>
+                        <p><span class="font-semibold">Email:</span> <a href="#service"
+                                class="text-sky-600 hover:underline">zyeeee33@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="fade-in" data-aos="fade-down">
+                <h2 class="text-3xl font-bold mb-6 gradient-text">About Me</h2>
+                <p class="text-gray-700 leading-relaxed text-base max-w-4xl">
+                    Saya berfokus pada pengembangan website menggunakan <span
+                        class="font-semibold text-red-600">Laravel</span> dan <span
+                        class="font-semibold text-sky-600">Tailwind CSS</span>.
+                    Berpengalaman membangun sistem cepat, aman, dan mudah digunakan dengan pendekatan yang mengutamakan
+                    performa serta pengalaman pengguna.
+                </p>
+            </div>
+
+            <!-- Skills -->
+            <div class="fade-in">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <h2 class="text-3xl font-bold gradient-text" data-aos="fade-right">Skills & Expertise</h2>
+                    <button data-aos="fade-left" onclick="window.location.href='https://wa.me/+62882003509995'"
+                        class="bg-gradient-to-r from-sky-500 to-blue-500 text-white font-medium px-6 py-2 rounded-lg shadow hover:scale-105 transition">Konsul
+                        Sekarang</button>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                    <div data-aos="fade-down">
+                        <h3 class="text-xl font-semibold text-sky-600 mb-3">Job Roles</h3>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>• Web Developer</li>
+                            <li>• Game Developer</li>
+                            <li>• UI/UX Designer</li>
+                            <li>• System Engineer</li>
+                        </ul>
+                    </div>
+
+                    <div data-aos="fade-down">
+                        <h3 class="text-xl font-semibold text-sky-600 mb-3">Tools & Framework</h3>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>• Laravel, Livewire</li>
+                            <li>• React, Next.js</li>
+                            <li>• Tailwind CSS, Bootstrap</li>
+                            <li>• Unity, Unreal Engine</li>
+                        </ul>
+                    </div>
+
+                    <div data-aos="fade-down">
+                        <h3 class="text-xl font-semibold text-sky-600 mb-3">Konsultasi</h3>
+                        <p class="text-gray-700 mb-3">Diskusikan proyek web, game, atau sistem digital Anda dengan saya.
+                        </p>
+                        <a href="https://wa.me/+62882003509995"
+                            class="inline-block bg-gradient-to-r from-sky-400 to-blue-500 text-white px-5 py-2 rounded-lg shadow hover:scale-105 transition">Hubungi
+                            Saya</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="w-full min-h-[80vh] flex justify-center items-center py-20" id="project">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+                    <span class="text-sky-600">My</span> Projects
+                </h1>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                    <!-- CARD TEMPLATE -->
+                    <div data-aos="fade-down"
+                        class="group relative bg-white/80 backdrop-blur-md rounded-3xl overflow-hidden border border-gray-300/40 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                        <div class="relative">
+                            <img src="assets/project/portofolio.png" alt="project.png"
+                                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-sky-500/50 via-sky-200/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                Portofolio <span class="text-sky-600">Website</span>
+                            </h2>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Desain responsif dengan animasi halus dan layout modern, menampilkan pengalaman
+                                profesional
+                                sebagai developer.
+                            </p>
+                            <div class="mt-5 flex justify-between items-center">
+                                <a href="notFound.html"
+                                    class="text-sky-600 font-semibold hover:text-sky-800 transition-all">Lihat
+                                    Detail</a>
+                                <i
+                                    class="fa-solid fa-arrow-right text-sky-600 group-hover:translate-x-2 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div data-aos="fade-down"
+                        class="group relative bg-white/80 backdrop-blur-md rounded-3xl overflow-hidden border border-gray-300/40 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                        <div class="relative">
+                            <img src="assets/project/service.png" alt="project.png"
+                                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-sky-500/50 via-sky-200/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                Web <span class="text-sky-600">Service</span>
+                            </h2>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Sistem layanan berbasis web dengan integrasi API dan tampilan dinamis menggunakan
+                                Tailwind dan
+                                Alpine.js.
+                            </p>
+                            <div class="mt-5 flex justify-between items-center">
+                                <a href="notFound.html"
+                                    class="text-sky-600 font-semibold hover:text-sky-800 transition-all">Lihat
+                                    Detail</a>
+                                <i
+                                    class="fa-solid fa-arrow-right text-sky-600 group-hover:translate-x-2 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div data-aos="fade-down"
+                        class="group relative bg-white/80 backdrop-blur-md rounded-3xl overflow-hidden border border-gray-300/40 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                        <div class="relative">
+                            <img src="assets/project/png.png" alt="project.png"
+                                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-sky-500/50 via-sky-200/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                UI <span class="text-sky-600">Design</span>
+                            </h2>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Konsep antarmuka modern dengan gaya minimalis dan transisi lembut, ideal untuk proyek
+                                startup
+                                dan portofolio.
+                            </p>
+                            <div class="mt-5 flex justify-between items-center">
+                                <a href="notFound.html"
+                                    class="text-sky-600 font-semibold hover:text-sky-800 transition-all">Lihat
+                                    Detail</a>
+                                <i
+                                    class="fa-solid fa-arrow-right text-sky-600 group-hover:translate-x-2 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="relative top-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-16 transform -scale-x-100 -scale-y-100" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="fill-black"></path>
+            </svg>
+        </div>
+
+        <div class="relative top-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="fill-black"></path>
+            </svg>
+        </div>
+        <section class="w-full min-h-[50vh] flex justify-center items-center py-10" id="service" data-aos="fade-up">
+            <div
+                class="w-full max-w-7xl bg-white/80 backdrop-blur-md rounded-3xl shadow-lg p-8 md:p-12 border border-gray-300/40 mx-6">
+
+                <!-- Judul -->
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl font-bold text-gray-800 tracking-tight">
+                        <span class="text-sky-600">Service</span> Contact
+                    </h1>
+                    <p class="text-gray-600 mt-2 text-sm md:text-base">
+                        Hubungi saya untuk konsultasi, pemesanan jasa, atau kerja sama proyek profesional.
+                    </p>
+                </div>
+
+                <!-- Form -->
+                <form class="grid grid-cols-1 lg:grid-cols-2 gap-8" action="notFound.html">
+                    <!-- Kiri -->
+                    <div class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-semibold mb-2">Nama Lengkap</label>
+                            <div
+                                class="flex items-center bg-gray-100 rounded-xl border border-gray-300/60 focus-within:ring-2 focus-within:ring-sky-500 transition">
+                                <i class="fa-solid fa-user text-gray-500 ps-3"></i>
+                                <input type="text" id="name" name="name" placeholder="Masukkan nama kamu"
+                                    class="w-full bg-transparent p-3 ps-4 outline-none rounded-xl text-gray-800">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <div
+                                class="flex items-center bg-gray-100 rounded-xl border border-gray-300/60 focus-within:ring-2 focus-within:ring-sky-500 transition">
+                                <i class="fa-solid fa-envelope text-gray-500 ps-3"></i>
+                                <input type="email" id="email" name="email" placeholder="email@example.com"
+                                    class="w-full bg-transparent p-3 ps-4 outline-none rounded-xl text-gray-800">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-semibold mb-2">Nomor Telepon</label>
+                            <div
+                                class="flex items-center bg-gray-100 rounded-xl border border-gray-300/60 focus-within:ring-2 focus-within:ring-sky-500 transition">
+                                <i class="fa-solid fa-phone text-gray-500 ps-3"></i>
+                                <input type="text" id="phone" name="phone" placeholder="+62 ..."
+                                    class="w-full bg-transparent p-3 ps-4 outline-none rounded-xl text-gray-800">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kanan -->
+                    <div class="space-y-6">
+                        <div>
+                            <label for="service" class="block text-gray-700 font-semibold mb-2">Jenis Layanan</label>
+                            <div
+                                class="flex items-center bg-gray-100 rounded-xl border border-gray-300/60 focus-within:ring-2 focus-within:ring-sky-500 transition">
+                                <i class="fa-solid fa-briefcase text-gray-500 ps-3"></i>
+                                <select id="service" name="service"
+                                    class="w-full bg-transparent p-3 ps-4 outline-none rounded-xl text-gray-800">
+                                    <option value="" disabled selected>Pilih layanan...</option>
+                                    <option value="web">Pembuatan Website</option>
+                                    <option value="game">Game Development</option>
+                                    <option value="design">UI/UX Design</option>
+                                    <option value="app">Aplikasi Mobile/Desktop</option>
+                                    <option value="consult">Konsultasi IT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-gray-700 font-semibold mb-2">Pesan / Detail
+                                Permintaan</label>
+                            <div
+                                class="bg-gray-100 rounded-xl border border-gray-300/60 focus-within:ring-2 focus-within:ring-sky-500 transition">
+                                <textarea id="message" name="message" rows="5"
+                                    placeholder="Tuliskan detail proyek kamu..."
+                                    class="w-full bg-transparent p-3 outline-none rounded-xl text-gray-800 resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit"
+                                class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-8 py-3 rounded-xl shadow-md hover:shadow-sky-400/40 transition-all duration-300">
+                                <i class="fa-solid fa-paper-plane me-2"></i>Kirim Pesan
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <!-- FOOTER -->
+    <footer class="bg-gradient-to-br from-sky-50 via-white to-blue-50 border-t border-sky-100 mt-20" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <!-- Brand -->
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="assets/logo.png" alt="Zyeee Logo" class="w-12 h-12 rounded-full ring-2 ring-sky-400">
+                    <h2 class="font-bold text-2xl text-gray-800">
+                        Zyeee <span class="text-sky-500 italic">Builder</span>
+                    </h2>
+                </div>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Building modern, secure, and efficient web & game experiences with passion and precision.
+                </p>
+                <div class="flex gap-4 mt-5">
+                    <a href="https://github.com/Zyeee-breaker" class="text-gray-600 hover:text-sky-500 transition"><i
+                            class="fab fa-github text-2xl"></i></a>
+                    <a href="notFound.html" class="text-gray-600 hover:text-sky-500 transition"><i
+                            class="fab fa-instagram text-2xl"></i></a>
+                    <a href="notFound.html" class="text-gray-600 hover:text-sky-500 transition"><i
+                            class="fab fa-tiktok text-2xl"></i></a>
+                    <a href="notFound.html" class="text-gray-600 hover:text-sky-500 transition"><i
+                            class="fab fa-x-twitter text-2xl"></i></a>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div>
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Navigation</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li><a href="#home" class="hover:text-sky-500 transition">Home</a></li>
+                    <li><a href="#about" class="hover:text-sky-500 transition">About</a></li>
+                    <li><a href="#project" class="hover:text-sky-500 transition">Projects</a></li>
+                    <li><a href="#service" class="hover:text-sky-500 transition">Service</a></li>
+                    <li><a href="https://wa.me/+62882003509995" class="hover:text-sky-500 transition">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div>
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Services</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li>• Web Development</li>
+                    <li>• Game Development</li>
+                    <li>• UI/UX Design</li>
+                    <li>• API Integration</li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Contact</h3>
+                <p class="text-gray-600 text-sm mb-3">Need a consultation or collaboration?</p>
+                <a href="https://wa.me/+62882003509995"
+                    class="flex items-center gap-2 text-sky-600 font-medium hover:underline transition">
+                    <i class="fa-solid fa-envelope"></i> zyeeee33@gmail.com
+                </a>
+                <a href="https://wa.me/+62882003509995" target="_blank"
+                    class="flex items-center gap-2 text-green-600 font-medium hover:underline mt-2 transition">
+                    <i class="fa-brands fa-whatsapp"></i> (+62) 882-0035-0995
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom -->
+        <div class="border-t border-sky-100 mt-10 py-5 text-center">
+            <p class="text-gray-500 text-sm">
+                © 2025 <span class="text-sky-500 font-semibold">Zyeee Builder</span>. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // durasi animasi (ms)
+            once: true,     // animasi hanya sekali
+            offset: 120,    // jarak sebelum elemen terlihat
+            easing: 'ease-in-out',
+        });
+    </script>
+
+</body>
+
+</html>
